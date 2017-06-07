@@ -5,7 +5,7 @@ Logic for the game progression is not implemented yet.
 
 Uses React to manage app state and user input. Draws graphics using SVG and CSS.
 
-<a style="text-align:center" href="https://github.com/jtegtmeier/hangman-game-node/blob/master/public/hangman.png?raw=true">
+<a style="display:flex;justify-content:center;" href="https://github.com/jtegtmeier/hangman-game-node/blob/master/public/hangman.svg">
   <img src="https://github.com/jtegtmeier/hangman-game-node/blob/master/public/hangman.png?raw=true" />
 </a>
 
