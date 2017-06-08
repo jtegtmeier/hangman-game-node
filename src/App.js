@@ -7,6 +7,7 @@ class App extends Component {
   constructor(){
     this.alphabet = []
     this.word = []
+    this.hint = []
     this.guessesLeft = 8
   }
 
