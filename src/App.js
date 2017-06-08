@@ -6,17 +6,15 @@ import ReactSVG from 'react-svg'
 function newGame() {
   newGameView()
   this.word = ["c", "a", "t"]
-  this.guesses = 8
+  this.guessesLeft = 8
   setBlanks( "___" )
 }
 
 class App extends Component {
   constructor(){
     this.alphabet = []
-    this.phrase = []
-    this.guess = []
-    this.numTries = 0
-    this.maxTries = 8
+    this.word = []
+    this.guessesLeft = 8
   }
 
   render() {
