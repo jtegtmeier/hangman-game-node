@@ -84,7 +84,7 @@ class App extends Component {
     event.target.value = ""
 
     if (this.state.guessesLeft <= 0) {
-      this.setState({info: "No more guesses, you lose..."})
+      //end of game
     } else if (this.state.isSolved) {
       this.setState({info: "You already won! Click new game button."})
     } else {
@@ -180,6 +180,12 @@ class App extends Component {
   componentDidUpdate() {
     if (!this.state.isSolved && this.state.word.every((word, i) => word === this.state.guesses[i])) {
       this.setState({isSolved: true, info: "You got it! Good job."})
+    }
+    if (this.state.guessesLeft === 0) {
+      this.setState({
+        info: `No more guesses, you lose... The word was ${this.state.word.join('')}`,
+        guessesLeft: -1
+    })
     }
   }
 
