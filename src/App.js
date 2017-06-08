@@ -4,20 +4,23 @@ import './App.css';
 import ReactSVG from 'react-svg'
 
 class App extends Component {
-  constructor(){
+  constructor(props){
+    super(props)
     this.alphabet = []
     this.word = []
     this.hint = []
     this.guessesLeft = 8
+
+
   }
 
   newGame() {
     newGameView()
-    this.alphabet = 
-      ["A", "B", "C", "D", "E", 
-      "F", "G", "H", "I", "J", 
-      "K", "L", "M", "N", "O", 
-      "P", "Q", "R", "S", "T", 
+    this.alphabet =
+      ["A", "B", "C", "D", "E",
+      "F", "G", "H", "I", "J",
+      "K", "L", "M", "N", "O",
+      "P", "Q", "R", "S", "T",
       "U", "V", "W", "X", "Y", "Z"]
     this.word = ["c", "a", "t"]
     this.hint = [ "_", "_", "_"]
@@ -64,7 +67,7 @@ class App extends Component {
             <button onClick={this.newGame}>New Game</button>
             <div className="remaining-alphabet">{this.alphabet}</div>
             <div className="guess-left">{this.guessesLeft}</div>
-            <input type="text" onChange={this.userGuess} placeholder="Guess a letter..."/>
+            <input type="text" onChange={this.userGuess.bind(this)} placeholder="Guess a letter..."/>
             <div className="puzzle-word">_ _ _ _ _ _   _ _ _ _</div>
           </div>
         </div>
