@@ -4,6 +4,14 @@ import './App.css';
 import ReactSVG from 'react-svg'
 
 class App extends Component {
+  constructor(){
+    this.alphabet = []
+    this.phrase = []
+    this.guess = []
+    this.numTries = 0
+    this.maxTries = 8
+  }
+
   render() {
     return (
       <div className="App">
