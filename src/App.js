@@ -36,9 +36,10 @@ class App extends Component {
         <div className="main">
           <ReactSVG path="hangman.svg"/>
           <div className="game-controls">
-            <button>New Game</button>
-            <div className="remaining-alphabet">ABCDEFGHIJKLMNOPQRSTUVWXYZ</div>
-            <input type="text" placeholder="Guess a letter..."/>
+            <button onClick={this.newGame}>New Game</button>
+            <div className="remaining-alphabet">{this.alphabet}</div>
+            <div className="guess-left">{this.guessesLeft}</div>
+            <input type="text" onChange={this.userGuess} placeholder="Guess a letter..."/>
             <div className="puzzle-word">_ _ _ _ _ _   _ _ _ _</div>
           </div>
         </div>
