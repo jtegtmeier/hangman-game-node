@@ -6,6 +6,9 @@ import ReactSVG from 'react-svg'
 class App extends Component {
   constructor(props){
     super(props)
+    this.state = {
+      alphabet: []
+    }
     this.alphabet = []
     this.word = []
     this.hint = []
@@ -24,17 +27,25 @@ class App extends Component {
     this.word = ["c", "a", "t"]
     this.hint = [ "_", "_", "_"]
     this.guessesLeft = 8
+    this.setState({
+      alphabet: this.alphabet
+    })
   }
 
   userGuess( event ) {
     let letter = event.target.value
+    console.log(letter.toUpperCase())
     if(!this.alphabet.includes(letter.toUpperCase)) {
-      // You already guessed that! Do nothing (no penalty).
-      console.log("You already guessed that!")
-      return
+      if (letter !== "") {
+        // You already guessed that! Do nothing (no penalty).
+        console.log("You already guessed that!")
+        console.log(this.alphabet[0])
+        return
+      }
     }
     else {
       this.guessesLeft--
+      console.log(this.guessesLeft)
       if (this.word.includes(letter)) {
         for (let i = 0; i < this.word.length; i ++) {
           if ( this.hint[i] === "_" && this.word.charAt(i) === letter)
@@ -63,7 +74,7 @@ class App extends Component {
           <ReactSVG path="hangman.svg"/>
           <div className="game-controls">
             <button onClick={this.newGame}>New Game</button>
-            <div className="remaining-alphabet">{this.alphabet}</div>
+            <div className="remaining-alphabet">{this.state.alphabet}</div>
             <div className="guess-left">{this.guessesLeft}</div>
             <input type="text" onChange={this.userGuess.bind(this)} placeholder="Guess a letter..."/>
             <div className="puzzle-word">_ _ _ _ _ _   _ _ _ _</div>
