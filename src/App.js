@@ -20,6 +20,7 @@ class App extends Component {
       "P", "Q", "R", "S", "T", 
       "U", "V", "W", "X", "Y", "Z"]
     this.word = ["c", "a", "t"]
+    this.hint = [ "_", "_", "_"]
     this.guessesLeft = 8
     setBlanks( "___" )
   }
