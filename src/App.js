@@ -29,7 +29,7 @@ class App extends Component {
   }
 
   userGuess( event ) {
-    letter = event.value
+    letter = event.target.value
     if(!this.alphabet.includes(letter.toUpperCase)) {
       // You already guessed that! Do nothing (no penalty).
       Console.log("You already guessed that!")
