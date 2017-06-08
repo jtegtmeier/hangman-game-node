@@ -10,35 +10,33 @@ class App extends Component {
     this.word = []
     this.hint = []
     this.guessesLeft = 8
-
-
+    this.newGame = this.newGame.bind(this)
   }
 
   newGame() {
-    newGameView()
-    this.alphabet =
-      ["A", "B", "C", "D", "E",
+    //newGameView()
+    this.alphabet = [
+      "A", "B", "C", "D", "E",
       "F", "G", "H", "I", "J",
       "K", "L", "M", "N", "O",
       "P", "Q", "R", "S", "T",
-      "U", "V", "W", "X", "Y", "Z"]
+      "U", "V", "W", "X", "Y", "Z" ]
     this.word = ["c", "a", "t"]
     this.hint = [ "_", "_", "_"]
     this.guessesLeft = 8
-    setBlanks( "___" )
   }
 
   userGuess( event ) {
-    letter = event.target.value
+    let letter = event.target.value
     if(!this.alphabet.includes(letter.toUpperCase)) {
       // You already guessed that! Do nothing (no penalty).
-      Console.log("You already guessed that!")
+      console.log("You already guessed that!")
       return
     }
     else {
       this.guessesLeft--
       if (this.word.includes(letter)) {
-        for (i = 0; i < this.word.length; i ++) {
+        for (let i = 0; i < this.word.length; i ++) {
           if ( this.hint[i] === "_" && this.word.charAt(i) === letter)
             this.hint[i] === letter.toUpperCase()
         }
@@ -48,7 +46,7 @@ class App extends Component {
       }
       this.alphabet.splice(this.alphabet.indexOf(letter.toUpperCase()), 1)
     }
-    
+    event.target.value = ""
   }
 
   render() {
