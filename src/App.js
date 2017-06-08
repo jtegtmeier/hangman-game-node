@@ -3,18 +3,24 @@ import './App.css';
 
 import ReactSVG from 'react-svg'
 
-function newGame() {
-  newGameView()
-  this.word = ["c", "a", "t"]
-  this.guessesLeft = 8
-  setBlanks( "___" )
-}
-
 class App extends Component {
   constructor(){
     this.alphabet = []
     this.word = []
     this.guessesLeft = 8
+  }
+
+  function newGame() {
+    newGameView()
+    this.alphabet = 
+      ["A", "B", "C", "D", "E", 
+      "F", "G", "H", "I", "J", 
+      "K", "L", "M", "N", "O", 
+      "P", "Q", "R", "S", "T", 
+      "U", "V", "W", "X", "Y", "Z"]
+  this.word = ["c", "a", "t"]
+    this.guessesLeft = 8
+    setBlanks( "___" )
   }
 
   render() {
