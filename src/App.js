@@ -6,18 +6,26 @@ import ReactSVG from 'react-svg'
 class App extends Component {
   constructor(props){
     super(props)
-    this.state = {
-      alphabet: []
-    }
-    this.alphabet = []
-    this.word = []
-    this.hint = []
+    
+    this.alphabet = [
+      "A", "B", "C", "D", "E",
+      "F", "G", "H", "I", "J",
+      "K", "L", "M", "N", "O",
+      "P", "Q", "R", "S", "T",
+      "U", "V", "W", "X", "Y", "Z" ]
+    this.word = ["c", "a", "t"]
+    this.hint = [ "_", "_", "_"]
     this.guessesLeft = 8
+    this.state = {
+      alphabet: this.alphabet,
+      guessesLeft: this.guessesLeft,
+      hintDisplay: this.hint.join(" ")
+    }
     this.newGame = this.newGame.bind(this)
   }
 
   newGame() {
-    //newGameView()
+    // removeHangman()
     this.alphabet = [
       "A", "B", "C", "D", "E",
       "F", "G", "H", "I", "J",
@@ -28,36 +36,52 @@ class App extends Component {
     this.hint = [ "_", "_", "_"]
     this.guessesLeft = 8
     this.setState({
-      alphabet: this.alphabet
+      alphabet: this.alphabet,
+      guessesLeft: this.guessesLeft,
+      hintDisplay: this.hint.join(" ")
     })
   }
 
   userGuess( event ) {
     let letter = event.target.value
-    console.log(letter.toUpperCase())
-    if(!this.alphabet.includes(letter.toUpperCase)) {
+    event.target.value = ""
+    if (this.guessesLeft <= 0) {
+      console.log("No more guesses, you lose...")
+    }
+    if(!this.alphabet.includes(letter.toUpperCase())) {
       if (letter !== "") {
-        // You already guessed that! Do nothing (no penalty).
+        // Do nothing (no penalty).
         console.log("You already guessed that!")
-        console.log(this.alphabet[0])
+        event.target.value = ""
         return
       }
     }
-    else {
+    else if (this.guessesLeft >= 1) {
       this.guessesLeft--
-      console.log(this.guessesLeft)
+      this.setState({
+      guessesLeft: this.guessesLeft
+    })
       if (this.word.includes(letter)) {
         for (let i = 0; i < this.word.length; i ++) {
-          if ( this.hint[i] === "_" && this.word.charAt(i) === letter)
+          if ( this.hint[i] === "_" && this.word[i] === letter)
             this.hint[i] === letter.toUpperCase()
         }
+        this.setState({
+          hintDisplay: this.hint.join(" ")
+        })
       }
       else {
-        // add to hangman
+        // addToHangman()
       }
+      console.log(this.alphabet.indexOf(letter.toUpperCase()))
       this.alphabet.splice(this.alphabet.indexOf(letter.toUpperCase()), 1)
+      this.setState({
+        alphabet: this.alphabet
+      })
     }
-    event.target.value = ""
+    if (JSON.stringify(this.hint) == JSON.stringify(this.word)) {
+      console.log("You got it! Good job.")
+    }
   }
 
   render() {
@@ -75,9 +99,9 @@ class App extends Component {
           <div className="game-controls">
             <button onClick={this.newGame}>New Game</button>
             <div className="remaining-alphabet">{this.state.alphabet}</div>
-            <div className="guess-left">{this.guessesLeft}</div>
+            <div className="guess-left">{this.state.guessesLeft}</div>
             <input type="text" onChange={this.userGuess.bind(this)} placeholder="Guess a letter..."/>
-            <div className="puzzle-word">_ _ _ _ _ _   _ _ _ _</div>
+            <div className="puzzle-word">{this.state.hintDisplay}</div>
           </div>
         </div>
       </div>
