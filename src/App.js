@@ -23,6 +23,29 @@ class App extends Component {
     setBlanks( "___" )
   }
 
+  userGuess( event ) {
+    letter = event.value
+    if(!this.alphabet.includes(letter.toUpperCase)) {
+      // You already guessed that! Do nothing (no penalty).
+      Console.log("You already guessed that!")
+      return
+    }
+    else {
+      this.guessesLeft--
+      if (this.word.includes(letter)) {
+        for (i = 0; i < this.word.length; i ++) {
+          if ( this.hint[i] === "_" && this.word.charAt(i) === letter)
+            this.hint[i] === letter.toUpperCase()
+        }
+      }
+      else {
+        // add to hangman
+      }
+      this.alphabet.splice(this.alphabet.indexOf(letter.toUpperCase()), 1)
+    }
+    
+  }
+
   render() {
     return (
       <div className="App">
