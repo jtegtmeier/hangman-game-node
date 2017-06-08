@@ -62,26 +62,23 @@ class App extends Component {
       guessesLeft: this.guessesLeft
     })
       if (this.word.includes(letter)) {
-        for (let i = 0; i < this.word.length; i ++) {
+        for (let i = 0; i < this.word.length; i ++)
           if ( this.hint[i] === "_" && this.word[i] === letter)
-            this.hint[i] === letter.toUpperCase()
-        }
+            this.hint[i] = letter.toUpperCase()
         this.setState({
           hintDisplay: this.hint.join(" ")
         })
       }
-      else {
+      else {}
         // addToHangman()
-      }
-      console.log(this.alphabet.indexOf(letter.toUpperCase()))
       this.alphabet.splice(this.alphabet.indexOf(letter.toUpperCase()), 1)
       this.setState({
         alphabet: this.alphabet
       })
     }
-    if (JSON.stringify(this.hint) == JSON.stringify(this.word)) {
+    if (JSON.stringify(this.hint) == 
+        JSON.stringify(this.word.map(letter => letter.toUpperCase())))
       console.log("You got it! Good job.")
-    }
   }
 
   render() {
