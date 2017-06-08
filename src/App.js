@@ -11,7 +11,7 @@ class App extends Component {
     this.guessesLeft = 8
   }
 
-  function newGame() {
+  newGame() {
     newGameView()
     this.alphabet = 
       ["A", "B", "C", "D", "E", 
